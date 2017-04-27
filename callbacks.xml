@@ -17,11 +17,8 @@
             </param>
         </params>
         <return>
-            <param name="R" type="table" item-type="float">
-                <description>rotation matrix</description>
-            </param>
-            <param name="t" type="table" item-type="float">
-                <description>translation vector</description>
+            <param name="m" type="table" item-type="float">
+                <description>transformation matrix (12 elements)</description>
             </param>
         </return>
     </command>

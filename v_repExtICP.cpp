@@ -78,10 +78,13 @@ void match(SScriptCallBack *p, const char *cmd, match_in *in, match_out *out)
     IcpPointToPlane icp(modl, modl_sz, 3);
     icp.fit(tmpl, tmpl_sz, R, t, in->outlier_treshold);
 
-    out->R.resize(9);
-    out->t.resize(3);
-    for(int i = 0; i < 9; i++) out->R[i] = R.val[i/3][i%3];
-    for(int i = 0; i < 3; i++) out->t[i] = R.val[i][0];
+    out->m.resize(12);
+    for(int row = 0; row < 3; row++)
+    {
+        for(int j = 0; j < 3; j++)
+            out->m[row * 4 + j] = R.val[row][j];
+        out->m[row * 4 + 3] = t.val[row][0];
+    }
 }
 
 VREP_DLLEXPORT unsigned char v_repStart(void* reservedPointer, int reservedInt)
