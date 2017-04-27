@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml-stylesheet type="text/xsl" href="callbacks.xsl"?>
+
+<plugin name="ICP" author="federico.ferri.it@gmail.com">
+    <!--<description></description>-->
+    <command name="match">
+        <description>Match two point clouds.</description>
+        <params>
+            <param name="model_handle" type="int">
+                <description>handle to model point cloud</description>
+            </param>
+            <param name="template_handle" type="int">
+                <description>handle to template point cloud</description>
+            </param>
+            <param name="outlier_treshold" type="float" default="-1">
+                <description>outlier treshold (-1 = no treshold)</description>
+            </param>
+        </params>
+        <return>
+            <param name="R" type="table" item-type="float">
+                <description>rotation matrix</description>
+            </param>
+            <param name="t" type="table" item-type="float">
+                <description>translation vector</description>
+            </param>
+        </return>
+    </command>
+</plugin>
