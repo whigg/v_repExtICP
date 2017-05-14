@@ -87,6 +87,25 @@ void match(SScriptCallBack *p, const char *cmd, match_in *in, match_out *out)
     }
 }
 
+void matchToShape(SScriptCallBack *p, const char *cmd, matchToShape_in *in, matchToShape_out *out)
+{
+    match_in in2;
+    match_out out2;
+
+    // create a point cloud from given shape
+    double voxel_size = 0.005;
+    int model_cloud = simCreatePointCloud(voxel_size, 1, 0, 1, 0);
+    simInsertObjectIntoPointCloud(model_cloud, in->model_handle, 0, voxel_size, NULL, NULL);
+
+    in2.model_handle = model_cloud;
+    in2.template_handle = in->template_handle;
+    match(0, cmd, &in2, &out2);
+
+    simRemoveObject(model_cloud);
+
+    out->m = out2.m;
+}
+
 VREP_DLLEXPORT unsigned char v_repStart(void* reservedPointer, int reservedInt)
 {
     char curDirAndFile[1024];

@@ -7,10 +7,29 @@
         <description>Match two point clouds.</description>
         <params>
             <param name="model_handle" type="int">
-                <description>handle to model point cloud</description>
+                <description>handle to model point cloud (model will be the static part)</description>
             </param>
             <param name="template_handle" type="int">
-                <description>handle to template point cloud</description>
+                <description>handle to template point cloud (template will be the part to register to the model)</description>
+            </param>
+            <param name="outlier_treshold" type="float" default="-1">
+                <description>outlier treshold (-1 = no treshold)</description>
+            </param>
+        </params>
+        <return>
+            <param name="m" type="table" item-type="float">
+                <description>transformation matrix (12 elements)</description>
+            </param>
+        </return>
+    </command>
+    <command name="matchToShape">
+        <description>Match point clouds to shape.</description>
+        <params>
+            <param name="model_handle" type="int">
+                <description>handle to model shape (model will be the static part)</description>
+            </param>
+            <param name="template_handle" type="int">
+                <description>handle to template point cloud (template will be the part to register to the model)</description>
             </param>
             <param name="outlier_treshold" type="float" default="-1">
                 <description>outlier treshold (-1 = no treshold)</description>
