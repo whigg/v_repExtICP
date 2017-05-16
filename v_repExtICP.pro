@@ -1,8 +1,11 @@
+QT -= core gui
+
 TARGET = v_repExtICP
 TEMPLATE = lib
 
 CONFIG += shared debug_and_release
 INCLUDEPATH += "../include"
+INCLUDEPATH += "external/libicp/src"
 
 *-msvc* {
 	QMAKE_CXXFLAGS += -O2
@@ -63,10 +66,22 @@ QMAKE_EXTRA_TARGETS += reference_html
 PRE_TARGETDEPS += reference.html
 
 HEADERS += \
+    ../include/v_repLib.h \
     stubs.h \
-    v_repExtICP.h
+    v_repExtICP.h \
+    external/libicp/src/icp.h \
+    external/libicp/src/icpPointToPlane.h \
+    external/libicp/src/icpPointToPoint.h \
+    external/libicp/src/kdtree.h \
+    external/libicp/src/matrix.h
 
 SOURCES += \
+    ../common/v_repLib.cpp \
     stubs.cpp \
-    v_repExtICP.cpp
+    v_repExtICP.cpp \
+    external/libicp/src/icp.cpp \
+    external/libicp/src/icpPointToPlane.cpp \
+    external/libicp/src/icpPointToPoint.cpp \
+    external/libicp/src/kdtree.cpp \
+    external/libicp/src/matrix.cpp
 
