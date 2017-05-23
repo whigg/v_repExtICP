@@ -6,6 +6,7 @@ TEMPLATE = lib
 CONFIG += shared debug_and_release
 INCLUDEPATH += "../include"
 INCLUDEPATH += "external/libicp/src"
+INCLUDEPATH += "generated"
 
 *-msvc* {
 	QMAKE_CXXFLAGS += -O2
@@ -44,26 +45,12 @@ unix:!symbian {
     INSTALLS += target
 }
 
-stubs_h.target = stubs.h
-stubs_h.output = stubs.h
-stubs_h.input = callbacks.xml
-stubs_h.commands = python -m v_repStubsGen -H stubs.h callbacks.xml
-QMAKE_EXTRA_TARGETS += stubs_h
-PRE_TARGETDEPS += stubs.h
-
-stubs_cpp.target = stubs.cpp
-stubs_cpp.output = stubs.cpp
-stubs_cpp.input = callbacks.xml
-stubs_cpp.commands = python -m v_repStubsGen -C stubs.cpp callbacks.xml
-QMAKE_EXTRA_TARGETS += stubs_cpp
-PRE_TARGETDEPS += stubs.cpp
-
-reference_html.target = reference.html
-reference_html.output = reference.html
-reference_html.input = callbacks.xml
-reference_html.commands = xsltproc --path \"$$PWD/\" -o reference.html callbacks.xsl callbacks.xml
-QMAKE_EXTRA_TARGETS += reference_html
-PRE_TARGETDEPS += reference.html
+gen_all.target = generated/stubs.h
+gen_all.output = generated/stubs.h
+gen_all.input = callbacks.xml simExtCustomUI.lua
+gen_all.commands = python \"$$PWD/external/v_repStubsGen/generate.py\" --xml-file \"$$PWD/callbacks.xml\" --gen-all \"$$PWD/generated/\"
+QMAKE_EXTRA_TARGETS += gen_all
+PRE_TARGETDEPS += generated/stubs.h
 
 HEADERS += \
     ../include/v_repLib.h \
