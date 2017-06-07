@@ -54,7 +54,7 @@ PRE_TARGETDEPS += generated/stubs.h
 
 HEADERS += \
     ../include/v_repLib.h \
-    stubs.h \
+    generated/stubs.h \
     v_repExtICP.h \
     external/libicp/src/icp.h \
     external/libicp/src/icpPointToPlane.h \
@@ -64,7 +64,7 @@ HEADERS += \
 
 SOURCES += \
     ../common/v_repLib.cpp \
-    stubs.cpp \
+    generated/stubs.cpp \
     v_repExtICP.cpp \
     external/libicp/src/icp.cpp \
     external/libicp/src/icpPointToPlane.cpp \
