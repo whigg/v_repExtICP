@@ -11,3 +11,7 @@ generated
 .qmake.stash
 Makefile.Debug
 Makefile.Release
+Makefile
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
