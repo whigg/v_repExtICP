@@ -8,3 +8,6 @@
 .AppleDouble
 .LSOverride
 generated
+.qmake.stash
+Makefile.Debug
+Makefile.Release
