@@ -30,4 +30,10 @@ set(SOURCES
 )
 add_library(v_repExtICP SHARED ${SOURCES} ${CMAKE_BINARY_DIR}/generated/stubs.cpp "${VREP_ROOT}/programming/common/v_repLib.cpp")
 
-target_link_libraries(v_repExtICP ${Boost_LIBRARIES})
+if(WIN32)
+        set(SHLWAPI shlwapi)
+else()
+        set(SHLWAPI)
+endif()
+
+target_link_libraries(v_repExtICP ${Boost_LIBRARIES} ${SHLWAPI})
