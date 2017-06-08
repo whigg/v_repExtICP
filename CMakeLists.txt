@@ -27,11 +27,4 @@ set(SOURCES
     external/libicp/src/matrix.cpp
 )
 add_library(v_repExtICP SHARED ${SOURCES} ${CMAKE_BINARY_DIR}/generated/stubs.cpp "${VREP_COMMON}/v_repLib.cpp")
-
-if(WIN32)
-    set(SHLWAPI shlwapi)
-else()
-    set(SHLWAPI)
-endif()
-
-target_link_libraries(v_repExtICP ${Boost_LIBRARIES} ${SHLWAPI})
+target_link_libraries(v_repExtICP ${Boost_LIBRARIES} ${VREP_LIBRARIES})
